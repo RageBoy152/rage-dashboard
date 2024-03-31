@@ -67,5 +67,5 @@ app.get('/launches',async(req,res)=>{
 
 
 app.listen(8114,()=>{
-    console.log('Server listening at us-nyc02.pylex.me:8114')
+    console.log('Server listening at https://rage-dashboard.onrender.com/')
 })
