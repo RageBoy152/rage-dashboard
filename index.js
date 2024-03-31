@@ -57,7 +57,7 @@ app.get('/stonks',async(req,res)=>{
 
 //    LAUNCHES
 app.get('/launches',async(req,res)=>{
-    rawLaunchesData = await fetch(`${baseLaunchAPIURL}launch/upcoming/?format=json&limit=10&mode=list&offset=10`)
+    rawLaunchesData = await fetch(`${baseLaunchAPIURL}launch/upcoming/?format=json&limit=10&mode=list&hide_recent_previous=true&ordering=desc`)
     launchesData = await rawLaunchesData.json()
 
     res.json(launchesData.results)
