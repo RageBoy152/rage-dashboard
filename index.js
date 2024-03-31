@@ -45,10 +45,7 @@ app.get('/weather',async(req,res)=>{
 //    STONKS
 app.get('/stonks',async(req,res)=>{
     rawStonksData = await fetch(`${baseCryptoAPIURL}coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=4&page=1&sparkline=false`)
-    stonksData = await rawStonksData.json()
-
-    console.log(stonksData)
-    
+    stonksData = await rawStonksData.json()    
 
     res.json(stonksData)
 })
@@ -57,7 +54,7 @@ app.get('/stonks',async(req,res)=>{
 
 //    LAUNCHES
 app.get('/launches',async(req,res)=>{
-    rawLaunchesData = await fetch(`${baseLaunchAPIURL}launch/upcoming/?format=json&limit=10&mode=list&hide_recent_previous=true&ordering=desc`)
+    rawLaunchesData = await fetch(`${baseLaunchAPIURL}launch/upcoming/?format=json&limit=5&mode=list&hide_recent_previous=true&ordering=desc`)
     launchesData = await rawLaunchesData.json()
 
     res.json(launchesData.results)
