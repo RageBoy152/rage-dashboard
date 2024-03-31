@@ -66,6 +66,6 @@ app.get('/launches',async(req,res)=>{
 
 
 
-app.listen(3001,()=>{
-    console.log('Server listening at localhost:3001')
+app.listen(8114,()=>{
+    console.log('Server listening at us-nyc02.pylex.me:8114')
 })
