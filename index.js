@@ -8,14 +8,28 @@ const baseLaunchAPIURL = 'https://lldev.thespacedevs.com/2.2.0/'
 
 
 const app = express()
-app.use(cors({
-    origin: '*'
-  }))
+
+
+//  CORS SETUP
+const whitelist = ['http://localhost:5500','https://rageboy152.github.io/rage-dashboard','http://127.0.0.1:5500'];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(corsOptions))
 
 
 
 
-//    WEATHER API
+
+
+//    WEATHER
 app.get('/weather',async(req,res)=>{
     rawForecastData = await fetch(`${baseWeatherAPIURL}forecast.json?key=${process.env.WEATHER_API_KEY}&q=airdrie`)
     forecastData = await rawForecastData.json()
