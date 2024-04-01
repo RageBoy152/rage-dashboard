@@ -11,14 +11,14 @@ const app = express()
 
 
 //  CORS SETUP
-const whitelist = ['http://localhost:5500','https://rageboy152.github.io/rage-dashboard','http://127.0.0.1:5500'];
+const whitelist = ['http://localhost:5500','https://rageboy152.github.io/rage-dashboard','http://127.0.0.1:5500','https://rageboy152.github.io/rage-dashboard/'];
 
 const corsOptions = {
   origin: function (origin, callback) {
     if (whitelist.indexOf(origin) !== -1) {
       callback(null, true)
     } else {
-      callback(new Error('Not allowed by CORS'))
+      callback(new Error(`Not allowed by CORS. SRC: ${origin}`))
     }
   }
 }
