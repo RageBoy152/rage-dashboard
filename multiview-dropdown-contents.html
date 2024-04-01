@@ -1,0 +1,48 @@
+<i class="bi bi-gear flex" onclick="expandStreamOps(this)"></i>
+
+<div class="streamOps flex">
+    <div class="cat">
+        <h2>NSF</h2>
+        <div class="cat-container">
+            <div class="wrapper">
+                <ul>
+                    <li onclick="loadStream(this.innerText, this)">SBL</li>
+                    <li onclick="loadStream(this.innerText, this)">Space Coast Live</li>
+                    <li onclick="loadStream(this.innerText, this)">McGregor Live</li>
+                </ul>
+                <div class="loadOtherVideo flex">
+                    <input type="text" placeholder="https://youtube.com/watch?v=videoId" id="videoInput">
+                    <input type="submit" value="Load Video" onclick="loadStream(null, this.parentElement, this.parentElement.querySelector('#videoInput'))">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="cat">
+        <h2>Lab Padre</h2>
+
+        <div class="cat-container flex">
+            <div class="wrapper flex">
+                <h3>Starbase</h3>
+                <ul>
+                    <li onclick="loadStream(this.innerText, this)">Plex View</li>
+                    <div class="space"></div>
+                    <li onclick="loadStream(this.innerText, this)">Rover 2</li>
+                    <li onclick="loadStream(this.innerText, this)">Lab Cam</li>
+                    <li onclick="loadStream(this.innerText, this)">Nerdle</li>
+                    <div class="space"></div>
+                    <li onclick="loadStream(this.innerText, this)">Rover 1</li>
+                    <li onclick="loadStream(this.innerText, this)">Sentinel Cam</li>
+                    <li onclick="loadStream(this.innerText, this)">Rocket Ranch</li>
+                </ul>
+            </div>
+            <div class="wrapper flex">
+                <h3>Florida</h3>
+                <ul>
+                    <li onclick="loadStream(this.innerText, this)">Cape Cam</li>
+                    <li onclick="loadStream(this.innerText, this)">Gator Cam</li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+</div>

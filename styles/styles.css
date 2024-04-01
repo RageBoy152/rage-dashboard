@@ -1,0 +1,126 @@
+.multiview-link, .upcominglaunches-speed-icons {position: absolute;margin-left:66%;margin-top:26%;}
+.multiview-link a, .upcominglaunches-speed-icons a {color: #b4b4b4;padding:15px;font-size:1.75em;transition: color 0.1s ease-in-out;cursor:pointer;}
+.multiview-link a:hover, .upcominglaunches-speed-icons a:hover {color: #ffffff;}
+
+.upcominglaunches-speed-icons {flex-direction: column;margin-top:1%;margin-left:96%;z-index:3;text-align:center;}
+.upcominglaunches-speed-icons a.active {color:#fff;}
+
+
+@keyframes marquee {
+    0% { transform: translateY(0%);opacity:0;}
+    5% {opacity: 1;}
+    95% {opacity: 1;}
+    100% { transform: translateY(-50%);opacity:0;}
+  }
+
+.upcomingLaunches {width:30%!important;padding:3em 0!important;overflow-y: hidden;height:100%;animation:marquee 40s ease-in-out infinite;}
+.upcomingLaunches::-webkit-scrollbar {display: none;}
+.paused{
+    -webkit-animation-play-state:paused;
+    -moz-animation-play-state:paused;
+    -o-animation-play-state:paused;
+    animation-play-state:paused;
+}
+
+
+.main-row-1 .widget {height: 40vh;}
+.main-row-2 .widget {height: 10vh;}
+.main-row-3 .widget {height: 10vh;}
+.main-row-4 .widget {height: 40vh;}
+
+
+
+
+hr {border: 1px solid #fff;width:100%;margin-block:1em;}
+
+h2 {text-transform: uppercase;}
+
+h1.big {font-size: 2em;}
+
+
+
+
+
+
+/*    WIDGET - DATE AND TIME    */
+
+.dateTime .big span {margin-inline:0.05em}
+.dateTime .big {padding-block:10%;margin-block:0.5em;border-block:1px solid #fff;text-align:center;font-variant-numeric: tabular-nums}
+
+
+
+/*    WIDGET - WEATHER    */
+
+.weather .suns i {font-size:3.25em}
+
+.weather hr {margin-block:0.5em;}
+
+.weather .suns, .weather .stats {gap: 4em;}
+
+.weather .current {padding-right:7em;align-items:flex-start;}
+
+
+.weather .forecast img {width:50px;}
+.weather .forecast {gap:2em;}
+.weather .forecast .time {font-size:1em;font-weight:800;}
+
+
+
+/*    WIDGET - STONKS    */
+
+.stocks .exchange {align-items:self-start;width:200px;}
+.stocks .exchange .row {width:100%;justify-content: space-between;}
+
+.text-green {color:#86D68E;}
+.text-red {color:#AD5151;}
+
+
+
+
+/*    WIDGET - UPCOMING LAUNCHES    */
+
+.launchCard {
+    border:1px solid #fff;
+    padding:2em 3em;
+}
+
+.upcomingLaunches .err {width:100%;margin-bottom:auto;text-align:center;padding-top:50vh;}
+
+
+.launchCard h1 {font-size:2em;border-bottom:1px solid #fff;padding-bottom:2%;margin-bottom:1%;}
+.launchCard h2 {font-size:1.4em;}
+.launchCard h3 {text-transform: capitalize;}
+
+
+.launchCard .col {align-items: flex-start;}
+
+.launchCard .row.container {gap:2em;}
+
+.launchCard .stats {gap:0.5em;}
+.launchCard .stats .row {gap:0.3em;}
+
+
+
+/*    WIDGET - CLOSURES    */
+
+.closures {
+    padding-block:1em;
+}
+
+
+
+/*    WIDGET - STREAMS    */
+
+.sbl, .lp {padding:0;}
+.sbl iframe, .lp iframe {width:100%;height:100%;}
+
+
+
+/*    WIDGET - TIMEZONES    */
+
+.timezones {
+    flex-direction: row;
+    gap: 11em;
+}
+
+.timezones h1 {text-align:center;font-variant-numeric: tabular-nums}

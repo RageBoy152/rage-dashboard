@@ -1,0 +1,44 @@
+* {margin:0;border:0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing: border-box;}
+
+body {
+    font-family: "Manrope", sans-serif;
+    background-color: #000;
+    color: #fff;
+    letter-spacing: 0.15em;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),  url(../media/tiles.png);
+    overflow-y: hidden;
+    border: 1px solid #fff;
+    max-height:100vh;
+}
+
+
+.flex, .row, .col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.row.stats .col.l {align-items: flex-start!important;gap:1em}
+.row.stats .col.r {align-items:flex-end!important;gap:1em}
+
+.col {flex-direction: column;}
+
+
+
+.widget {
+    border: 1px solid #fff;
+    flex-direction: column;
+    gap: 1em;
+    padding: 2.5em 3em;
+    width:fit-content;
+}
+
+
+
+body, .col-main, .main-row {
+    align-items: flex-start!important;
+    justify-content: flex-start!important;
+}
+
+.col-main {width:70%;flex-wrap: wrap;height:100%;}
+.col-main .main-row {width: 100%;}
+.col-main .widget {width:100%;height:100%;}

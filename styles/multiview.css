@@ -1,0 +1,89 @@
+.headings {
+    position: absolute;
+    width:10%;
+    left:45%;
+    text-align: center;
+    flex-direction: column;
+    gap: 1em;
+    margin-top:1em;
+}
+.headings a {color: #b4b4b4;padding:15px;font-size:1.1em;display:flex;justify-content:center;flex-direction:column;transition: color 0.1s ease-in-out;}
+.headings a i {font-size:1.75em;}
+.headings a:hover {color: #ffffff;}
+
+
+
+
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    height:100vh;
+}
+.container .row {width:100%;justify-content: space-between;height:50%;}
+.container .col {width:44%;height:100%;border: 1px solid #fff;background-color:rgba(43, 43, 43, 0.767);}
+
+iframe {height:100%;width:100%;}
+.col.expanded iframe {display: none;}
+
+
+
+
+.dropdown i {position: absolute;cursor:pointer;font-size:1.5em;padding:15px;
+    transition:transform 0.05s ease-in-out;
+}
+.dropdown i:hover {transform: rotateZ(45deg) scale(1.1);}
+
+/* stream options toggle position */
+.row .col:first-child .dropdown i {left: 44%;}
+.row .col:last-child .dropdown i {right:44%;}
+.row:first-child .dropdown i {top:44%}
+.row:last-child .dropdown i {bottom:44%}
+
+
+
+.streamOps {
+    width:30%;
+    position: absolute;
+    justify-content: space-between;
+    align-items: flex-start;
+    display: none;
+    text-align:center;
+    gap: 4em;
+}
+.streamOps.expanded {display: flex;}
+
+.streamOps h2 {font-size:1.85em;border-bottom:1px solid #fff;padding-bottom:2px;margin-bottom:15px;}
+.streamOps h3 {font-size:1.3em;}
+.streamOps h3:not(:first-of-type) {margin-top:15px;}
+.streamOps li {margin-top:0.25em;cursor:pointer;}
+.streamOps li:hover {color:#d3d3d3;text-decoration:underline;}
+.streamOps ul {list-style-type: '- ';padding:1em;text-align:left;}
+
+.streamOps .space {margin-block:15px}
+
+.streamOps .cat {width:40%}
+.streamOps .cat:last-child {width:60%}
+.streamOps .wrapper {flex-direction: column;}
+.streamOps .cat-container {align-items: flex-start;}
+
+
+.streamOps .loadOtherVideo {flex-direction: column;margin-top:1em;}
+
+.streamOps input {
+    border:0;outline:0;
+    padding:1em;
+    background-color:transparent;
+    border-bottom:1px solid #fff;
+    color:#fff;
+    font-size:0.8em;
+    width:100%;
+    transition: border-color 0.15s ease-in-out;
+}
+.streamOps input.invalid {border-color:red;}
+
+.streamOps input[type=submit] {
+    cursor:pointer;
+    background-color:#ffffff13;
+}
+
+.streamOps input[type=submit]:hover {background-color:#ffffff33;}
