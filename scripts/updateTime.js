@@ -24,7 +24,7 @@ function adjustHour(hour, offset) {
 //  CALCULATES LOCAL OFFSET FROM UTC
 function setLocalOffset() {
     date = new Date()
-    offsetMins = date.getTimezoneOffset()
+    offsetMinutes = date.getTimezoneOffset()
 
     sign = (offsetMinutes < 0) ? '+' : '-'
     offsetHours = Math.abs(Math.floor(offsetMinutes / 60))
