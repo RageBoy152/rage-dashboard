@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <meta name="description" content="24/7 Dashboard to put on your second monitor. | Likely won't work on your screen">
+
+    
+    <!--   GOOGLE FONTS   -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap" rel="stylesheet">
+    
+
+    <!--   IMPORTS   -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+
+    <!--   STYLES   -->
+    <!-- <link rel="stylesheet" href="styles/defaultStyles.css"> -->
+    <link rel="stylesheet" href="styles/ringStyles.css">
+</head>
+
+<body>
+    <!-- <div class="multiview-link flex">
+        <a href="multiview.html"><i class="bi bi-display"></i></a>
+    </div> -->
+    
+
+
+    <div class="container main">
+        <div class="row main-row">
+            <div class="col widget dateTime">
+                <div class="container">
+                    <div class="col date">
+                        <h1 id="date">30 / 03 / 2024</h1>
+                        <h2 id="day-text">saturday</h2>
+                    </div>
+                    <div class="col">
+                        <h1 class="big timezone" id="timezone_l">00 <span>:</span> 00 <span>:</span> 00</h1>
+                        <p><span id="local-utc-offset">UTC-5</span> (CDT)<br>Local</p>
+                    </div>
+                    <div class="hr"></div>
+                    <div class="col">
+                        <h1 class="big timezone" id="timezone_-4">00 <span>:</span> 00 <span>:</span> 00</h1>
+                        <p>UTC-4 (EDT)</p>
+                    </div>
+                    <div class="col">
+                        <h1 class="big timezone" id="timezone_0">00 <span>:</span> 00 <span>:</span> 00</h1>
+                        <p>UTC+0</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col widget bocaStats">
+                <div id="closures-container">
+                    <div class="err"><h1>Loading Closures...</h1></div>
+                </div>
+            </div>
+            <div class="col widget bocaStats">
+                <div id="tfr-container">
+                    <div class="err"><h1>Loading TFRs...</h1></div>
+                </div>
+            </div>
+            <div class="col widget upcomingLaunches" id="scrolling-list">
+                <div class="err"><h1>Loading Launches...</h1></div>
+            </div>
+        </div>
+        <div class="row main-row">
+            <div class="col widget">
+                <iframe src="https://www.youtube.com/embed/mhJRzQsLZGg?autoplay=1&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+            <div class="col widget">
+                <iframe src="https://www.youtube.com/embed/A8QLrVAOE1k?autoplay=1&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+    
+
+    <script src="scripts/script.js"></script>
+    <script src="scripts/updateTime.js"></script>
+    <script src="scripts/closures.js"></script>
+    <script src="scripts/upcomingLaunches.js"></script>
+</body>
+</html>

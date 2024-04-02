@@ -29,8 +29,21 @@ function formatLaunchDateAndTime(net, netAbbrev) {
 
 
 
-//  UPDATE LAUNCHES FUNCTION
-async function updateLaunches() {
+//  calls weather update
+async function initUpdateLaunches() {
+    launchUpdate = await updateLaunches()
+
+    while (launchUpdate!="ok") {
+        // issue with updating weather, wait 20s then try update again
+        await delay(20000)
+        launchUpdate = updateLaunches()
+    }
+}
+
+
+
+//  fetch launches data
+async function fetchLaunches() {
     let dataRaw;
     let fetchErr;
     try {
@@ -38,11 +51,21 @@ async function updateLaunches() {
     }   catch (err) {
         fetchErr = err.toString()
     }
+
+    return [dataRaw,fetchErr]
+}
+
+
+
+//  UPDATE LAUNCHES
+async function updateLaunches() {
+    fetchData = await fetchLaunches()
+    updateStatus = "err"
     
 
     $('#scrolling-list')[0].innerHTML = "<div class='err'><h1>Loading...</h1></div>"
-    if (!fetchErr) {
-        const data = await dataRaw.json()
+    if (!fetchData[1]) {
+        const data = await fetchData[0].json()
 
         if (data.length>0)
             $('#scrolling-list')[0].innerHTML = ''
@@ -53,7 +76,7 @@ async function updateLaunches() {
 
             $('#scrolling-list')[0].innerHTML += `
                 <div class="launchCard">
-                    <div class="row container">
+                    <div class="container">
                         <div class="col stats">
                             <div class="row">
                                 <h1>${data[i].name}</h1>
@@ -63,7 +86,7 @@ async function updateLaunches() {
                                 <h2 class="launch-tMinus" id="${launchDateAndTimeArr[0]}">...</h2>
                             </div>
 
-                            <br>
+                            <div class="space"></div>
 
                             <div class="row">
                                 <i class="bi bi-calendar3"></i>
@@ -86,15 +109,18 @@ async function updateLaunches() {
                 </div>
             `
         }
+        updateStatus = "ok"
     }   else {
-        $('#scrolling-list')[0].innerHTML = `<div class="err"><h1>Launch Error...</h1><br><p>${fetchErr}</p></div>`
+        $('#scrolling-list')[0].innerHTML = `<div class="err"><h1>Launch Error...</h1><br><p>${fetchData[1]}</p></div>`
     }
+
+    return updateStatus
 }
 
 
 
 //  RUNS EVERY HOUR, UPDATES UPCOMING LAUNCHES
 window.setInterval(function(){
-    updateLaunches()
+    initUpdateLaunches()
 }, 3600000);
-updateLaunches()
+initUpdateLaunches()

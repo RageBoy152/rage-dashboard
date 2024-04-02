@@ -19,11 +19,6 @@ $(document).ready(()=>{
 
 
 
-//  delay function
-const delay = ms => new Promise(res => setTimeout(res, ms));
-
-
-
 //  LOAD STREAM FROM TEXT
 async function loadStream(linkText, linkElem, manual) {
     videoId = ''
@@ -33,8 +28,8 @@ async function loadStream(linkText, linkElem, manual) {
             if (streamLinks[i].text==linkText) {videoId = streamLinks[i].videoId;break}
         }
     }   else {
-        inputText = manual.value.toLowerCase()
-        if (inputText == '' || !inputText.includes('http://') || !inputText.includes('https://') || !inputText.includes('/')) {
+        inputText = manual.value
+        if (inputText == '' || !inputText.includes('youtube.com/watch?v=')) {
             // invalid input
             manual.classList.add('invalid')
             await delay(2000)

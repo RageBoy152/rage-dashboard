@@ -13,7 +13,7 @@ dd = 0
 
 //  CONVERTS 24HOUR TIME BETWEEN TIMEZONES
 function adjustHour(hour, offset) {
-    hourAdjusted = hour-offset
+    hourAdjusted = hour+offset
     if (hourAdjusted<0) {hourAdjusted=24+hourAdjusted}
     if (hourAdjusted==24) {hourAdjusted=0}
     return hourAdjusted.toString().padStart(2, '0')
@@ -99,10 +99,19 @@ window.setInterval(function(){
 
 
 
-    $('#main-time')[0].innerHTML = `${adjustHour(hour, -1)} <span>:</span> ${mins} <span>:</span> ${secs}`
-    $('#minus-4-time')[0].innerHTML = `${adjustHour(hour, 4)} <span>:</span> ${mins} <span>:</span> ${secs}`
-    $('#minus-5-time')[0].innerHTML = `${adjustHour(hour, 5)} <span>:</span> ${mins} <span>:</span> ${secs}`
-    $('#minus-7-time')[0].innerHTML = `${adjustHour(hour, 7)} <span>:</span> ${mins} <span>:</span> ${secs}`
+    //  update world clocks
+    timezones = $('.timezone')
+
+    for (let i=0;i<timezones.length;i++) {
+        hrOffset = hour
+        tzOffset = timezones[i].id.split('_')[1]
+        
+        // offset hour if offset isn't "l" (local). if its local use getHours() for local time
+        if (tzOffset == 'l') {hrOffset=date.getHours()}
+        else {hrOffset = adjustHour(hour, parseInt(tzOffset))}
+        
+        timezones[i].innerHTML = `${hrOffset.toString().padStart(2, '0')} <span>:</span> ${mins} <span>:</span> ${secs}`
+    }
 
 
 
@@ -120,6 +129,9 @@ window.setInterval(function(){
         }   else if (tMinus[0] == '01') {
             // launching in the next 48hrs, countdown days and hours
             times[i].innerText = `${parseInt(tMinus[0])}d ${parseInt(tMinus[1])}h`
+        }   else if (timeDiff<0) {
+            // launch already happened
+            times[i].innerText = `${tMinus[2]*-1}mins ago.`
         }   else {
             // launching in over 48hrs, countdown days
             times[i].innerText = `${parseInt(tMinus[0])} days`

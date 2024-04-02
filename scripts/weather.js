@@ -22,15 +22,28 @@ function time12Hourto24Hour(time12hour) {
 
 
 
-function initWeather() {
-    $('.widget.weather').load('weather.html')
-    weatherInit = true
-    updateWeather()
+//  calls weather update
+async function initUpdateWeather() {
+    weatherUpdate = await updateWeather()
+
+    while (weatherUpdate!="ok") {
+        // issue with updating weather, wait 20s then try update again
+        await delay(20000)
+        weatherUpdate = updateWeather()
+    }
 }
 
 
-//  RUNS EVERY 15 MINS, UPDATES WEATHER
-async function updateWeather() {
+
+function initWeather() {
+    $('.widget.weather').load('weather.html')
+    weatherInit = true
+    initUpdateWeather()
+}
+
+
+
+async function fetchWeather() {
     let dataRaw;
     let fetchErr;
     try {
@@ -38,11 +51,19 @@ async function updateWeather() {
     }   catch (err) {
         fetchErr = err.toString()
     }
-    
+
+    return [dataRaw,fetchErr]
+}
 
 
-    if (!fetchErr) {
-        const data = JSON.parse(await dataRaw.json())
+
+//  RUNS EVERY 15 MINS, UPDATES WEATHER
+async function updateWeather() {
+    fetchData = await fetchWeather()
+    updateStatus = "err"
+
+    if (!fetchData[1]) {
+        const data = JSON.parse(await fetchData[0].json())
 
 
         $('#current-temp')[0].innerText = `${data.temp}°c`
@@ -63,13 +84,15 @@ async function updateWeather() {
                 </div>
             `
         }
+        updateStatus = "ok"
     }   else {
-        $('.widget.weather')[0].innerHTML = `<h1>Weather Error...</h1><br><p>${fetchErr}</p>`
+        $('.widget.weather')[0].innerHTML = `<h1>Weather Error...</h1><br><p>${fetchData[1]}</p>`
     }
+    return updateStatus
 }
 
 
-window.setInterval(function(){
-    updateWeather()
+window.setInterval(async function(){
+    initUpdateWeather()
 }, 900000);
 initWeather()

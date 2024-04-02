@@ -6,15 +6,26 @@
 .upcominglaunches-speed-icons a.active {color:#fff;}
 
 
+/*   AUTO SCROLL ANIM - DISABLED RN   */
 @keyframes marquee {
     0% { transform: translateY(0%);opacity:0;}
     5% {opacity: 1;}
     95% {opacity: 1;}
     100% { transform: translateY(-50%);opacity:0;}
-  }
+}
 
-.upcomingLaunches {width:30%!important;padding:3em 0!important;overflow-y: hidden;height:100%;animation:marquee 40s ease-in-out infinite;}
-.upcomingLaunches::-webkit-scrollbar {display: none;}
+
+
+.upcomingLaunches {width:30%!important;padding:3em 0!important;overflow-y: scroll;height:100vh;
+    /*animation:marquee 40s ease-in-out infinite;*/
+}
+
+/* UPCOMING LAUNCHES SCROLLBAR */
+.upcomingLaunches::-webkit-scrollbar-track {background:transparent;}
+.upcomingLaunches::-webkit-scrollbar-thumb {background:#dadada;border-radius:5px;}
+.upcomingLaunches::-webkit-scrollbar-thumb:hover {background:#b8b8b8;}
+.upcomingLaunches::-webkit-scrollbar {width:5px;}
+
 .paused{
     -webkit-animation-play-state:paused;
     -moz-animation-play-state:paused;
