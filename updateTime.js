@@ -119,10 +119,10 @@ window.setInterval(function(){
             times[i].innerText = `${tMinus[1]}:${tMinus[2]}:${tMinus[3]}`
         }   else if (tMinus[0] == '01') {
             // launching in the next 48hrs, countdown days and hours
-            times[i].innerText = `${tMinus[0]}d ${tMinus[1]}h`
+            times[i].innerText = `${parseInt(tMinus[0])}d ${parseInt(tMinus[1])}h`
         }   else {
             // launching in over 48hrs, countdown days
-            times[i].innerText = `${tMinus[0]} days`
+            times[i].innerText = `${parseInt(tMinus[0])} days`
         }
     }
 
