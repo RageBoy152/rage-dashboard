@@ -5,6 +5,7 @@ const cors = require('cors')
 const baseWeatherAPIURL = 'http://api.weatherapi.com/v1/'
 const baseCryptoAPIURL = 'http://api.coingecko.com/api/v3/'
 const baseLaunchAPIURL = 'https://lldev.thespacedevs.com/2.2.0/'
+const baseClosuresTFRAPIURL = 'https://starbase.nerdpg.live/api/json/'
 
 
 const app = express()
@@ -14,16 +15,15 @@ const app = express()
 const whitelist = ['http://localhost:5500','https://rageboy152.github.io','http://127.0.0.1:5500'];
 
 const corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
-    } else {
-      callback(new Error(`Not allowed by CORS. SRC: ${origin}`))
+    origin: function (origin, callback) {
+        if (whitelist.indexOf(origin) !== -1) {
+            callback(null, true)
+        } else {
+            allback(new Error(`Not allowed by CORS. SRC: ${origin}`))
+        }
     }
-  }
 }
 app.use(cors(corsOptions))
-
 
 
 
@@ -72,6 +72,50 @@ app.get('/launches',async(req,res)=>{
     launchesData = await rawLaunchesData.json()
 
     res.json(launchesData.results)
+})
+
+
+
+//    CLOSURES
+app.get('/closures',async(req,res)=>{
+    rawClosuresData = await fetch(`${baseClosuresTFRAPIURL}roadClosures`)
+    closuresData = await rawClosuresData.json()
+
+    rawStatusData = await fetch(`${baseClosuresTFRAPIURL}current`)
+    statusData = await rawStatusData.json()
+    roadStatus = statusData.testing.stateOfRoad
+
+
+    //  API FOR THIS NOT WORKING NOW
+
+    // rawTfrData = await fetch(`${baseClosuresTFRAPIURL}notams`)
+    // tfrData = await rawTfrData.json()
+
+
+    tfrData = [
+      {
+          "dateEnd": "June 01, 2024",
+          "dateStart": "Febuary 27, 2024",
+          "link": "https://tfr.faa.gov/save_pages/detail_4_0058.html",
+          "lowerAltitude": "0",
+          "tfrID": "4_0058",
+          "units": "ft",
+          "upperAltitude": "2000"
+      },
+      {
+          "dateEnd": "June 01, 2024",
+          "dateStart": "Febuary 27, 2024",
+          "link": "https://tfr.faa.gov/save_pages/detail_4_0057.html",
+          "lowerAltitude": "0",
+          "tfrID": "4_0057",
+          "units": "ft",
+          "upperAltitude": "10000"
+      }
+    ]
+
+
+    data = [closuresData,roadStatus,tfrData]
+    res.json(data)
 })
 
 
