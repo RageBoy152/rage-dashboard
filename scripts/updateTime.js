@@ -15,6 +15,7 @@ dd = 0
 function adjustHour(hour, offset) {
     hourAdjusted = hour-offset
     if (hourAdjusted<0) {hourAdjusted=24+hourAdjusted}
+    if (hourAdjusted==24) {hourAdjusted=0}
     return hourAdjusted.toString().padStart(2, '0')
 }
 
@@ -23,12 +24,12 @@ function adjustHour(hour, offset) {
 //  CALCULATES LOCAL OFFSET FROM UTC
 function setLocalOffset() {
     date = new Date()
-    hourUTC = date.getUTCHours()
-    hourLocal = date.getHours()
+    offsetMins = date.getTimezoneOffset()
 
-    offset = hourLocal-hourUTC
+    sign = (offsetMinutes < 0) ? '+' : '-'
+    offsetHours = Math.abs(Math.floor(offsetMinutes / 60))
 
-    $('#local-utc-offset')[0].innerText = `UTC+${offset}`
+    $('#local-utc-offset')[0].innerText = `UTC${sign}${offsetHours}`
 }
 setLocalOffset()
 
@@ -118,10 +119,10 @@ window.setInterval(function(){
             times[i].innerText = `${tMinus[1]}:${tMinus[2]}:${tMinus[3]}`
         }   else if (tMinus[0] == '01') {
             // launching in the next 48hrs, countdown days and hours
-            times[i].innerText = `${tMinus[0]}d ${tMinus[1]}h`
+            times[i].innerText = `${parseInt(tMinus[0])}d ${parseInt(tMinus[1])}h`
         }   else {
             // launching in over 48hrs, countdown days
-            times[i].innerText = `${tMinus[0]} days`
+            times[i].innerText = `${parseInt(tMinus[0])} days`
         }
     }
 

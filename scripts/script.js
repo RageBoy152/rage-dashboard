@@ -7,7 +7,6 @@ const midScrollSpeed = 40
 //  RUNS EACH .4s, HANDLES AUTO SCROLL BEHAVIOUR  \\
 
 // init scroll vars
-currentScrollPercent = 0
 runningScrollCount = 0
 runningPausedCount = 0
 paused = false
@@ -16,7 +15,7 @@ paused = false
 var showPercent = window.setInterval(function() {
 
     // conditionals to update scroll state
-    if (runningScrollCount>=120000 && currentScrollPercent > 15 && currentScrollPercent < 85 && !paused) {
+    if (runningScrollCount>=120000 && getComputedStyle($('#scrolling-list')[0]).getPropertyValue('opacity')==1 && !paused) {
         // pause anim
         $('#scrolling-list')[0].classList.add('paused')
         paused = true
@@ -35,9 +34,6 @@ var showPercent = window.setInterval(function() {
     if (paused) {runningPausedCount+=400}
     else {
         runningScrollCount+=400
-
-        if(currentScrollPercent < 100) {currentScrollPercent++;}
-        else {currentScrollPercent = 0}
     }
 }, 400);
 
