@@ -47,7 +47,7 @@ async function getWeatherData() {
     date = new Date()
     currentHour = date.getHours()
     
-    
+    console.log("updating weather")
     
     weather = {
         "humidity": forecastData.current.humidity,
