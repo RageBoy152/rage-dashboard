@@ -42,8 +42,10 @@ async function loadStream(linkText, linkElem, manual) {
     }
 
     //  change iframe src
-    iframe = linkElem.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('iframe')
-    iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&autoplay=0&controls=1&rel=0`
+    feed = linkElem.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('iframe.feed')
+    chat = linkElem.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.querySelector('iframe.chat')
+    feed.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&autoplay=0&controls=1&rel=0`
+    chat.src = `https://www.youtube.com/live_chat?v=${videoId}&embed_domain=rageboy152.github.io`
     
 
     //  hide stream ops
@@ -59,8 +61,29 @@ function expandStreamOps(streamOpsTogglerElem) {
     if (streamOpsPanel.classList.contains('expanded')) {
         streamOpsPanel.classList.remove('expanded')
         streamContainer.classList.remove('expanded')
+        streamOpsTogglerElem.classList.remove('active')
     }   else {
         streamOpsPanel.classList.add('expanded')
         streamContainer.classList.add('expanded')
+        streamOpsTogglerElem.classList.add('active')
+    }
+}
+
+
+
+//  HANDLES TOGGLING CHAT ON FEED
+function toggleChat(togglerElem) {
+    feed = togglerElem.parentNode.querySelector('iframe.feed')
+    chat = togglerElem.parentNode.querySelector('iframe.chat')
+
+
+    if (togglerElem.classList.contains('active')) {
+        togglerElem.classList.remove('active')
+        feed.classList.add('active')
+        chat.classList.remove('active')
+    }   else {
+        togglerElem.classList.add('active')
+        feed.classList.remove('active')
+        chat.classList.add('active')
     }
 }

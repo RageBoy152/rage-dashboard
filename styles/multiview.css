@@ -28,10 +28,9 @@ iframe {height:100%;width:100%;}
 
 
 
-.dropdown i {position: absolute;cursor:pointer;font-size:1.5em;padding:15px;
-    transition:transform 0.05s ease-in-out;
-}
-.dropdown i:hover {transform: rotateZ(45deg) scale(1.1);}
+.dropdown i {position: absolute;cursor:pointer;font-size:1.5em;padding:15px;color:#cccccc;}
+.dropdown i:hover, .dropdown i.active {color:#fff}
+
 
 /* stream options toggle position */
 .row .col:first-child .dropdown i {left: 44%;}
@@ -87,3 +86,20 @@ iframe {height:100%;width:100%;}
 }
 
 .streamOps input[type=submit]:hover {background-color:#ffffff33;}
+
+
+
+
+
+
+
+.chat-icon {position: absolute;cursor:pointer;font-size:1.5em;padding:15px;color:#cccccc;}
+.chat-icon:hover, .chat-icon.active {color:#fff;}
+
+iframe:not(.active) {display:none;}
+
+/* stream options toggle position */
+.row .col:first-child .chat-icon {left: 44%;}
+.row .col:last-child .chat-icon {right:44%;}
+.row:first-child .chat-icon {top:32%}
+.row:last-child .chat-icon {bottom:32%}
