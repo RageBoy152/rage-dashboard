@@ -34,6 +34,11 @@
         <div class="row main-row">
             <div class="col widget dateTime">
                 <div class="container">
+                    <div class="timeModeToggle flex">
+                        <p class="timeMode12" onclick="toggleTimeMode(this,'12')">12H</p>
+                        <div class="hr"></div>
+                        <p class="timeMode24 active" onclick="toggleTimeMode(this,'24')">24H</p>
+                    </div>
                     <div class="col date">
                         <h1 id="date">30 / 03 / 2024</h1>
                         <h2 id="day-text">saturday</h2>
@@ -79,6 +84,7 @@
     
 
     <script src="scripts/script.js"></script>
+    <script>dash='ring'</script>
     <script src="scripts/updateTime.js"></script>
     <script src="scripts/closures.js"></script>
     <script src="scripts/upcomingLaunches.js"></script>
