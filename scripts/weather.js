@@ -63,7 +63,7 @@ async function updateWeather() {
     updateStatus = "err"
 
     if (!fetchData[1]) {
-        const data = JSON.parse(await fetchData[0].json())
+        const data = await fetchData[0].json()
 
 
         $('#current-temp')[0].innerText = `${data.temp}°c`
