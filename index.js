@@ -4,7 +4,8 @@ const cors = require('cors')
 
 const baseWeatherAPIURL = 'http://api.weatherapi.com/v1/'
 const baseCryptoAPIURL = 'http://api.coingecko.com/api/v3/'
-const baseLaunchAPIURL = 'https://lldev.thespacedevs.com/2.2.0/'
+const baseLaunchAPIURL = 'https://ll.thespacedevs.com/2.2.0/'
+// const baseLaunchAPIURL = 'https://lldev.thespacedevs.com/2.2.0/'
 const baseClosuresTFRAPIURL = 'https://starbase.nerdpg.live/api/json/'
 
 
@@ -12,7 +13,7 @@ const app = express()
 
 
 //  CORS SETUP
-const whitelist = ['http://localhost:5500','https://rageboy152.github.io','http://127.0.0.1:5500'];
+const whitelist = ['http://localhost:5500','https://rageboy152.github.io','http://127.0.0.1:5500', undefined];
 
 const corsOptions = {
     origin: function (origin, callback) {
