@@ -9,6 +9,8 @@ mins = 0
 secs = 0
 dd = 0
 
+timeMode = '24'
+
 
 
 //  CONVERTS 24HOUR TIME BETWEEN TIMEZONES
@@ -94,7 +96,9 @@ window.setInterval(function(){
     
 
     
-    $('#date')[0].innerHTML = `${dd} / ${mm} / ${yy}`
+    if (dash=='ring') {$('#date')[0].innerHTML = `${mm} / ${dd} / ${yy}`}
+    else {$('#date')[0].innerHTML = `${dd} / ${mm} / ${yy}`}
+    
     $('#day-text')[0].innerHTML = `${dayNumToText(day)}`
 
 
@@ -109,8 +113,16 @@ window.setInterval(function(){
         // offset hour if offset isn't "l" (local). if its local use getHours() for local time
         if (tzOffset == 'l') {hrOffset=date.getHours()}
         else {hrOffset = adjustHour(hour, parseInt(tzOffset))}
+
+        halfIndicator = 'am'
+        if (timeMode == '12') {
+            if (hrOffset>=12) {halfIndicator='pm';hrOffset=hrOffset-12}
+            if (hrOffset==0) {hrOffset=12}
+        }
         
-        timezones[i].innerHTML = `${hrOffset.toString().padStart(2, '0')} <span>:</span> ${mins} <span>:</span> ${secs}`
+        if (timeMode=='12') {timeHalfIndecator=`<span class="timeHalf">${halfIndicator}</span>`}
+        else {timeHalfIndecator=''}
+        timezones[i].innerHTML = `${hrOffset.toString().padStart(2, '0')} <span>:</span> ${mins} <span>:</span> ${secs}${timeHalfIndecator}`
     }
 
 
@@ -142,3 +154,20 @@ window.setInterval(function(){
 
 
 }, 1000);
+
+
+
+
+//  handles switching between 12hr time and 24hr time
+function toggleTimeMode(toggler,toMode) {
+    toggler.classList.add('active')
+    timeMode = toMode
+
+    if (toMode=='12') {
+        toggler.parentElement.querySelector('.timeMode24').classList.remove('active')
+    }   else {
+        toggler.parentElement.querySelector('.timeMode12').classList.remove('active')
+    }
+
+    initUpdateLaunches()
+}

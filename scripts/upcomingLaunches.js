@@ -11,20 +11,25 @@ function formatLaunchDateAndTime(net, netAbbrev) {
     mm = rawDate[1]
     yyyy = rawDate[0]
 
-    dayDate = new Date(net.split("T")[0])
-    d = dayDate.getDay()
-    d = dayNumToText(d)
-    d = d.slice(0,3)
 
     rawTime = rawTime.split(':')
-    fullTime = `${yyyy}-${mm}-${ddL}T${rawTime[0]}:${rawTime[1]}:${rawTime[2]}Z`
 
-    timeClean = `${rawTime[0]}:${rawTime[1]}:${rawTime[2]}`
+    
+    halfIndicator = 'am'
+    if (timeMode == '12') {
+        if (rawTime[0]>=12) {halfIndicator='pm';rawTime[0]=rawTime[0]-12}
+        if (rawTime[0]==0) {rawTime[0]=12}
+    }
+
+    if (timeMode=='12') {timeHalfIndecator=`<span class="timeHalf">${halfIndicator}</span>`}
+    else {timeHalfIndecator=''}
+
+    timeClean = `${rawTime[0]}:${rawTime[1]}:${rawTime[2]}${timeHalfIndecator}`
     if (netAbbrev == "TBD" || netAbbrev == "M") {timeClean = `T-0 TBD`}
 
     dateAndTime = `${ddL}/${mm}/${yyyy} | ${timeClean}`
 
-    return [fullTime,dateAndTime]
+    return dateAndTime
 }
 
 
@@ -33,7 +38,7 @@ function formatLaunchDateAndTime(net, netAbbrev) {
 async function initUpdateLaunches() {
     launchUpdate = await updateLaunches()
 
-    while (launchUpdate!="ok") {
+    while (launchUpdate != "ok") {
         // issue with updating weather, wait 20s then try update again
         await delay(20000)
         launchUpdate = updateLaunches()
@@ -65,7 +70,8 @@ async function updateLaunches() {
 
     $('#scrolling-list')[0].innerHTML = "<div class='err'><h1>Loading...</h1></div>"
     if (!fetchData[1]) {
-        const data = await fetchData[0].json()
+        data = await fetchData[0].json()
+
 
         if (data.length>0)
             $('#scrolling-list')[0].innerHTML = ''
@@ -83,14 +89,14 @@ async function updateLaunches() {
                             </div>
                             <div class="row">
                                 <i class="bi bi-clock"></i>
-                                <h2 class="launch-tMinus" id="${launchDateAndTimeArr[0]}">...</h2>
+                                <h2 class="launch-tMinus" id="${data[i].net}">...</h2>
                             </div>
 
                             <div class="space"></div>
 
                             <div class="row">
                                 <i class="bi bi-calendar3"></i>
-                                <p>${launchDateAndTimeArr[1]}</p>
+                                <p>${launchDateAndTimeArr}</p>
                             </div>
                             <div class="row">
                                 <i class="bi bi-geo-alt"></i>

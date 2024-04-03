@@ -40,9 +40,6 @@ async function updateClosures() {
     tfrData = data[2]
 
 
-    console.log(data)
-
-
 
     $('#closures-container')[0].innerHTML = "<h1>Loading...</h1>"
     if (!fetchData[1]) {
