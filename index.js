@@ -1,6 +1,7 @@
 const dotenv = require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
+const fs = require('fs')
 
 const baseWeatherAPIURL = 'http://api.weatherapi.com/v1/'
 const baseCryptoAPIURL = 'http://api.coingecko.com/api/v3/'
@@ -32,7 +33,14 @@ app.use(cors(corsOptions))
 
 //    WEATHER
 app.get('/weather',async(req,res)=>{
-    rawForecastData = await fetch(`${baseWeatherAPIURL}forecast.json?key=${process.env.WEATHER_API_KEY}&q=airdrie`)
+    data = require('./data/weatherData.json')
+
+    res.json(data)
+})
+
+
+async function getWeatherData() {
+    rawForecastData = await fetch(`${baseWeatherAPIURL}forecast.json?key=${process.env.WEATHER_API_KEY}&q=${process.env.LOCATION}`)
     forecastData = await rawForecastData.json()
     
     hourlyForecast = forecastData.forecast.forecastday[0].hour
@@ -51,34 +59,87 @@ app.get('/weather',async(req,res)=>{
         "sunset": forecastData.forecast.forecastday[0].astro.sunset,
         "conditionText": forecastData.current.condition.text,
         "isDay": forecastData.current.is_day
-    }
-    res.json(JSON.stringify(weather))
-})
+    } 
+
+
+    fs.writeFile("data/weatherData.json", JSON.stringify(weather), (err) => err && console.error(err));
+}
+
+//  RUNS EVERY 15 MINS, UPDATES WEATHER DATA
+setInterval(function(){
+    getWeatherData()
+}, 900000);
+getWeatherData()
+
+
 
 
 
 //    STONKS
 app.get('/stonks',async(req,res)=>{
-    rawStonksData = await fetch(`${baseCryptoAPIURL}coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=4&page=1&sparkline=false`)
-    stonksData = await rawStonksData.json()    
+    data = require('./data/stonksData.json')
 
-    res.json(stonksData)
+    res.json(data)
 })
+
+
+async function getStonksData() {
+    rawStonksData = await fetch(`${baseCryptoAPIURL}coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=4&page=1&sparkline=false`)
+    stonksData = await rawStonksData.json()   
+
+
+    fs.writeFile("data/stonksData.json", JSON.stringify(stonksData), (err) => err && console.error(err));
+}
+
+//  RUNS EVERY 15 MINS, UPDATES STONKS DATA
+setInterval(function(){
+    getStonksData()
+}, 900000);
+getStonksData()
+
+
 
 
 
 //    LAUNCHES
 app.get('/launches',async(req,res)=>{
+    data = require('./data/launchData.json')
+
+    res.json(data.results)
+})
+
+
+async function getLaunchData() {
     rawLaunchesData = await fetch(`${baseLaunchAPIURL}launch/upcoming/?format=json&limit=5&mode=list&hide_recent_previous=true&ordering=desc`)
     launchesData = await rawLaunchesData.json()
 
-    res.json(launchesData.results)
-})
+
+    fs.writeFile("data/launchData.json", JSON.stringify(launchesData), (err) => err && console.error(err));
+}
+
+//  RUNS EVERY HOUR, UPDATES UPCOMING LAUNCHES JSON FILE
+setInterval(function(){
+    getLaunchData()
+}, 3600000);
+getLaunchData()
+
+
 
 
 
 //    CLOSURES
 app.get('/closures',async(req,res)=>{
+    closuresData = require('./data/closures.json')
+    roadStatus = require('./data/roadStatus.json')
+    tfrData = require('./data/tfrData.json')
+
+
+    data = [closuresData,roadStatus,tfrData]
+    res.json(data)
+})
+
+
+async function getBocaStats() {
     rawClosuresData = await fetch(`${baseClosuresTFRAPIURL}roadClosures`)
     closuresData = await rawClosuresData.json()
 
@@ -87,37 +148,18 @@ app.get('/closures',async(req,res)=>{
     roadStatus = statusData.testing.stateOfRoad
 
 
-    //  API FOR THIS NOT WORKING NOW
+    fs.writeFile("data/closures.json", JSON.stringify(closuresData), (err) => err && console.error(err));
+    fs.writeFile("data/roadStatus.json", JSON.stringify(roadStatus), (err) => err && console.error(err));
+    // fs.writeFile("data/tfrData.json", JSON.stringify(closuresData), (err) => err && console.error(err));
+}
 
-    // rawTfrData = await fetch(`${baseClosuresTFRAPIURL}notams`)
-    // tfrData = await rawTfrData.json()
+//  RUNS EVERY 2 MINS, UPDATES ALL BOCA STATUS DATA
+setInterval(function(){
+    getBocaStats()
+}, 120000
+);
+getBocaStats()
 
-
-    tfrData = [
-      {
-          "dateEnd": "June 01, 2024",
-          "dateStart": "Febuary 27, 2024",
-          "link": "https://tfr.faa.gov/save_pages/detail_4_0058.html",
-          "lowerAltitude": "0",
-          "tfrID": "4_0058",
-          "units": "ft",
-          "upperAltitude": "2000"
-      },
-      {
-          "dateEnd": "June 01, 2024",
-          "dateStart": "Febuary 27, 2024",
-          "link": "https://tfr.faa.gov/save_pages/detail_4_0057.html",
-          "lowerAltitude": "0",
-          "tfrID": "4_0057",
-          "units": "ft",
-          "upperAltitude": "10000"
-      }
-    ]
-
-
-    data = [closuresData,roadStatus,tfrData]
-    res.json(data)
-})
 
 
 
