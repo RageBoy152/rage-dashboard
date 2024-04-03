@@ -61,6 +61,12 @@ body::before {
 
 /*    WIDGET - DATE AND TIME    */
 
+.timeModeToggle {flex-direction:column;position:absolute;top:0;left:0;padding:2em;}
+.timeModeToggle .hr {margin-block:0.5em;}
+.timeModeToggle p {cursor:pointer;color:#b8b8b8}
+.timeModeToggle p.active, .timeModeToggle p:hover {color:#fff}
+
+
 .dateTime .container {flex-direction: column;justify-content:center;gap:1em;text-align:center;}
 
 .dateTime .date {font-size:0.9em;}
@@ -70,6 +76,8 @@ body::before {
 .dateTime #timezone_l {padding-block:7%;margin-block:0.5em;border-block:1px solid #fff;}
 .dateTime .timezone {font-variant-numeric: tabular-nums;text-align:center;}
 .dateTime .big:not(#timezone_l) {font-size:1.8em;}
+
+.timeHalf {font-size:0.7em;}
 
 
 
@@ -140,6 +148,8 @@ body::before {
 .launchCard .stats {gap:0.8em;}
 .launchCard .stats .row {gap:10px;}
 .launchCard .stats .row p {font-size:1.1em;}
+
+.launchCard .timeHalf {font-size:0.9em;}
 
 
 
