@@ -1,50 +1,62 @@
 [
     {
         "text": "SBL",
-        "videoId": "mhJRzQsLZGg"
+        "videoId": "mhJRzQsLZGg",
+        "creditName": "NSF Starbase Live"
     },
     {
         "text": "Space Coast Live",
-        "videoId": "Jm8wRjD3xVA"
+        "videoId": "Jm8wRjD3xVA",
+        "creditName": "NSF Space Coast Live"
     },
     {
         "text": "McGregor Live",
-        "videoId": "cOmmvhDQ2HM"
+        "videoId": "cOmmvhDQ2HM",
+        "creditName": "NSF McGregor Live"
     },
     {
         "text": "Plex View",
-        "videoId": "A8QLrVAOE1k"
+        "videoId": "A8QLrVAOE1k",
+        "creditName": "LP Multi Plex"
     },
     {
         "text": "Rover 2",
-        "videoId": "tS2PHJmvJzo"
+        "videoId": "tS2PHJmvJzo",
+        "creditName": "LP Rover 2"
     },
     {
         "text": "Lab Cam",
-        "videoId": "OWCh3wmKtak"
+        "videoId": "OWCh3wmKtak",
+        "creditName": "LP Lab Cam"
     },
     {
         "text": "Nerdle",
-        "videoId": "0EZQaF_liXw"
+        "videoId": "0EZQaF_liXw",
+        "creditName": "LP Nerdle Cam"
     },
     {
         "text": "Rover 1",
-        "videoId": "Rg7kw-KLDL8"
+        "videoId": "Rg7kw-KLDL8",
+        "creditName": "LP Rover 1"
     },
     {
         "text": "Sentinel Cam",
-        "videoId": "IQV0DlS1Ew0"
+        "videoId": "IQV0DlS1Ew0",
+        "creditName": "LP Sentinel Cam"
     },
     {
         "text": "Rocket Ranch",
-        "videoId": "qw3uaLRrYNY"
+        "videoId": "qw3uaLRrYNY",
+        "creditName": "LP Rocket Ranch"
     },
     {
         "text": "Cape Cam",
-        "videoId": "k6VsTygpzZ4"
+        "videoId": "k6VsTygpzZ4",
+        "creditName": "LP Cape Cam"
     },
     {
         "text": "Gator Cam",
-        "videoId": "FTw5xuq2swo"
+        "videoId": "FTw5xuq2swo",
+        "creditName": "LP Gator Cam"
     }
 ]
