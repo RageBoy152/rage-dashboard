@@ -96,7 +96,7 @@ iframe {height:100%;width:100%;}
 .chat-icon {position: absolute;cursor:pointer;font-size:1.5em;padding:15px;color:#cccccc;}
 .chat-icon:hover, .chat-icon.active {color:#fff;}
 
-iframe:not(.active) {display:none;}
+iframe:not(.active) {opacity:0;position: absolute;z-index: -1;}
 
 /* stream options toggle position */
 .row .col:first-child .chat-icon {left: 44%;}
