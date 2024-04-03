@@ -87,3 +87,24 @@ function toggleChat(togglerElem) {
         chat.classList.add('active')
     }
 }
+
+
+
+//  COPIES CREDIT TEXT FOR THE FEED TO USERS CLIPBOARD
+async function copyCredit(copyBtnElem) {
+    copyBtnElem.classList.add('active')
+    feedSRC = copyBtnElem.parentNode.querySelector('iframe.feed').src
+    linkVideoId = feedSRC.split('?')[0].split('embed/')[1]
+    feedName = ''
+
+
+    for (let i=0;i<streamLinks.length;i++) {
+        if (streamLinks[i].videoId==linkVideoId) {feedName=streamLinks[i].creditName;break}
+    }
+
+    copyText = `[ Credit: [${feedName}](<https://www.youtube.com/watch?v=${linkVideoId}>) ]`
+    navigator.clipboard.writeText(copyText)
+
+    await delay(1500)
+    copyBtnElem.classList.remove('active')
+}
