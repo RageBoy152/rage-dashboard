@@ -79,6 +79,7 @@ app.get('/launches',async(req,res)=>{
     if (data.details) {launchesRate = 21}
     else {launchesRate = 15}
 
+
     res.json(data.results)
 })
 
@@ -101,6 +102,7 @@ app.get('/closures',async(req,res)=>{
     roadStatus = require('./data/roadStatus.json')
     tfrData = require('./data/tfrData.json')
 
+    console.log("client fetching closures, roadStatus and TFR data.")
 
     data = [closuresData,roadStatus,tfrData]
     res.json(data)
@@ -115,6 +117,8 @@ async function getBocaStats() {
     statusData = await rawStatusData.json()
     roadStatus = statusData.testing.stateOfRoad
 
+    console.log("updating closure.json and roadStatus.json")
+    console.log(closuresData)
 
     fs.writeFile("data/closures.json", JSON.stringify(closuresData), (err) => err && console.error(err));
     fs.writeFile("data/roadStatus.json", JSON.stringify(roadStatus), (err) => err && console.error(err));
