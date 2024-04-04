@@ -79,6 +79,7 @@ app.get('/launches',async(req,res)=>{
     if (data.details) {launchesRate = 21}
     else {launchesRate = 15}
 
+    console.log(data)
 
     res.json(data.results)
 })
