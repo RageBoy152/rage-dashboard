@@ -10,6 +10,9 @@ const baseLaunchAPIURL = 'https://ll.thespacedevs.com/2.2.0/'
 const baseClosuresTFRAPIURL = 'https://starbase.nerdpg.live/api/json/'
 
 
+launchesRate = 15
+
+
 const app = express()
 
 
@@ -73,6 +76,10 @@ async function getWeatherData() {
 app.get('/launches',async(req,res)=>{
     data = require('./data/launchData.json')
 
+    if (data.details) {launchesRate = 21}
+    else {launchesRate = 15}
+
+
     res.json(data.results)
 })
 
@@ -127,12 +134,14 @@ setInterval(function(){
     if (tTotal%2 == 0) {
         // every 2 mins
         getBocaStats()
-    }   else if (tTotal%15) {
+    }   else if (tTotal%15 == 0) {
         // every 15 mins
-        getLaunchData()
         getWeatherData()
-    }   else if (tTotal%60) {
+    }   else if (tTotal%60 == 0) {
         // every hour
+    }   else if (tTotal%launchesRate == 0) {
+        // every whatever the rate for launches is - prevents rate limit blocks
+        getLaunchData()
     }
 }, 60000);
 
