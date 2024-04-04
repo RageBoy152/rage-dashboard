@@ -20,28 +20,20 @@
 
     <!--   STYLES   -->
     <link rel="stylesheet" href="styles/defaultStyles.css">
-    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" href="styles/rageStyles.css">
+    <link rel="stylesheet" href="styles/closures.css">
+    <link rel="stylesheet" href="styles/upcomingLaunches.css">
 </head>
 
 <body class="flex">
     <div class="multiview-link flex">
         <a href="multiview.html"><i class="bi bi-display"></i></a>
     </div>
-    <!-- <div class="upcominglaunches-speed-icons flex">
-        <p>Scroll Speed</p>
-        <a onclick="setScrollSpeed(0.5,this)"><i class="bi bi-1-square"></i></a>
-        <a onclick="setScrollSpeed(1,this)" class="active"><i class="bi bi-2-square"></i></a>
-        <a onclick="setScrollSpeed(2,this)"><i class="bi bi-3-square"></i></a>
-    </div> -->
-    
 
 
-    <div class="col-main flex">
-
-        <div class="main-row main-row-1 flex">
-
-
-            <section class="widget flex dateTime">
+    <div class="container main">
+        <div class="row main-row">
+            <section class="col widget flex dateTime">
                 <h1 id="date">30 / 03 / 2024</h1>
                 <h2 id="day-text">saturday</h2>
         
@@ -49,28 +41,28 @@
         
                 <p id="local-utc-offset">UTC+1</p>
             </section>
-        
-        
-        
-            <section class="widget flex weather">
+
+
+            <section class="col widget flex weather">
                 <h1>Loading weather...</h1>
             </section>
-        
-        
-        
-            <section class="widget flex stocks" id="stonks-container">
-                <h1>Loading crypto...</h1>
+
+
+            <section class="col widget bocaStats">
+                <div id="closures-container">
+                    <div class="err"><h1>Loading Closures...</h1></div>
+                </div>
             </section>
 
 
+            <div class="col widget upcomingLaunches" id="scrolling-list">
+                <div class="err"><h1>Loading...</h1></div>
+            </div>
         </div>
 
 
-
-        <div class="main-row main-row-2 flex">
-
-
-            <section class="widget flex timezones">
+        <div class="row main-row timezones-row">
+            <section class="col widget flex timezones">
                 <div class="col">
                     <h1 class="big timezone" id="timezone_-7">00 <span>:</span> 00 <span>:</span> 00</h1>
                     <p>UTC-7 (PT)</p>
@@ -84,53 +76,35 @@
                     <p>UTC-4 (ET)</p>
                 </div>
             </section>
-
-
         </div>
 
 
-
-        <div class="main-row main-row-3 flex">
-
-
-            <section class="widget flex closures">
-                <h2>Starbase closures will be here in the future</h2>
+        <div class="row main-row">
+            <section class="col widget bocaStats">
+                <div id="tfr-container">
+                    <div class="err"><h1>Loading TFRs...</h1></div>
+                </div>
             </section>
-
-
+    
+    
+            <section class="col widget">
+                <h1>Widget</h1>
+            </section>
+    
+    
+            <section class="col widget">
+                <h1>Widget</h1>
+            </section>
         </div>
-
-
-
-        <div class="main-row main-row-4 flex">
-
-
-            <section class="widget flex sbl">
-                <iframe src="https://www.youtube.com/embed/mhJRzQsLZGg?autoplay=1&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </section>
-
-            <section class="widget flex lp">
-                <iframe src="https://www.youtube.com/embed/A8QLrVAOE1k?autoplay=1&rel=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-            </section>
-
-
-        </div>
-
-
     </div>
-
-
-
-    <div class="widget upcomingLaunches" id="scrolling-list">
-        <div class="err"><h1>Loading...</h1></div>
-    </div>
+    
     
 
     <script src="scripts/script.js"></script>
     <script>dash='rage'</script>
     <script src="scripts/updateTime.js"></script>
     <script src="scripts/weather.js"></script>
-    <script src="scripts/stonks.js"></script>
+    <script src="scripts/closures.js"></script>
     <script src="scripts/upcomingLaunches.js"></script>
 </body>
 </html>
