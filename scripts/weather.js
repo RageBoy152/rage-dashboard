@@ -65,7 +65,7 @@ async function updateWeather() {
     if (!fetchData[1]) {
         const data = await fetchData[0].json()
 
-
+        // $('.widget.weather').load('./weather.html')
         $('#current-temp')[0].innerText = `${data.temp}°c`
         $('#humidity')[0].innerText = `${data.humidity}%`
         $('#wind')[0].innerText = `${data.wind}mph`
