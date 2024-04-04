@@ -47,7 +47,7 @@ async function getWeatherData() {
     date = new Date()
     currentHour = date.getHours()
     
-    console.log("updating weather")
+    
     
     weather = {
         "humidity": forecastData.current.humidity,
@@ -64,38 +64,6 @@ async function getWeatherData() {
 
     fs.writeFile("data/weatherData.json", JSON.stringify(weather), (err) => err && console.error(err));
 }
-
-//  RUNS EVERY 15 MINS, UPDATES WEATHER DATA
-setInterval(function(){
-    getWeatherData()
-}, 900000);
-getWeatherData()
-
-
-
-
-
-//    STONKS
-app.get('/stonks',async(req,res)=>{
-    data = require('./data/stonksData.json')
-
-    res.json(data)
-})
-
-
-async function getStonksData() {
-    rawStonksData = await fetch(`${baseCryptoAPIURL}coins/markets?vs_currency=gbp&order=market_cap_desc&per_page=4&page=1&sparkline=false`)
-    stonksData = await rawStonksData.json()   
-
-
-    fs.writeFile("data/stonksData.json", JSON.stringify(stonksData), (err) => err && console.error(err));
-}
-
-//  RUNS EVERY 15 MINS, UPDATES STONKS DATA
-setInterval(function(){
-    getStonksData()
-}, 900000);
-getStonksData()
 
 
 
@@ -116,12 +84,6 @@ async function getLaunchData() {
 
     fs.writeFile("data/launchData.json", JSON.stringify(launchesData), (err) => err && console.error(err));
 }
-
-//  RUNS EVERY HOUR, UPDATES UPCOMING LAUNCHES JSON FILE
-setInterval(function(){
-    getLaunchData()
-}, 3600000);
-getLaunchData()
 
 
 
@@ -153,14 +115,32 @@ async function getBocaStats() {
     // fs.writeFile("data/tfrData.json", JSON.stringify(closuresData), (err) => err && console.error(err));
 }
 
-//  RUNS EVERY 2 MINS, UPDATES ALL BOCA STATUS DATA
+
+
+
+
+tTotal = 0
+//  RUNS EVERY MIN, HANDLES MAIN LOOP FUNC
 setInterval(function(){
-    getBocaStats()
-}, 120000
-);
+    tTotal += 1
+
+    if (tTotal%2 == 0) {
+        // every 2 mins
+        getBocaStats()
+    }   else if (tTotal%15) {
+        // every 15 mins
+        getLaunchData()
+        getWeatherData()
+    }   else if (tTotal%60) {
+        // every hour
+    }
+}, 60000);
+
+
+//  INIT DATA
 getBocaStats()
-
-
+getLaunchData()
+getWeatherData()
 
 
 
