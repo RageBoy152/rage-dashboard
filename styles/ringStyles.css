@@ -23,40 +23,6 @@ body::before {
 
 
 
-/*  CUSTOM HR  */
-.hr {background-color:#fff;height:1px;width:100%;margin-block:0.75em;}
-
-
-
-/* SCROLLBAR STLYES */
-::-webkit-scrollbar-track {background:transparent;}
-::-webkit-scrollbar-thumb {background:#dadada;border-radius:5px;}
-::-webkit-scrollbar-thumb:hover {background:#b8b8b8;}
-::-webkit-scrollbar {width:5px;}
-
-
-
-/* container, row, col setup */
-.container.main {height:100vh;width:100vw;}
-.container {
-    display: flex;
-    flex-wrap: wrap;
-}
-.main-row {height:50%;}
-.container .row {width:100%;justify-content: space-between;}
-.container .widget {width:100%;height:100%;border: 1px solid #fff;}
-.flex, .row, .col {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.col {flex-direction: column;}
-
-
-
-
-
 
 
 /*    WIDGET - DATE AND TIME    */
@@ -67,6 +33,7 @@ body::before {
 .timeModeToggle p.active, .timeModeToggle p:hover {color:#fff}
 
 
+.dateTime {padding:0!important}
 .dateTime .container {flex-direction: column;justify-content:center;gap:1em;text-align:center;}
 
 .dateTime .date {font-size:0.9em;}
@@ -79,33 +46,6 @@ body::before {
 
 .timeHalf {font-size:0.7em;}
 
-
-
-
-/*    WIDGET - CLOSURES AND TFRs    */
-
-.bocaStats {
-    overflow-y: auto;
-    justify-content: flex-start!important;
-}
-#closures-container, #tfr-container {width:100%}
-.data .bigI {font-size:1.2em;}
-
-.bocaStats .row {justify-content: flex-start!important;gap:1em;}
-
-.data {
-    border:1px solid #fff;
-    padding:2em 3em;
-    gap:0.5em;
-}
-.status {padding:1em;text-align:center;border-bottom: 1px solid #fff;}
-.statusGreen {background-color:rgba(0, 256, 0, 0.1);}
-.statusRed {background-color:rgba(256, 0, 0, 0.1);}
-.statusUnkown {background-color:rgba(255, 255, 0,0.1);}
-
-.noData {text-align: center;margin-top:1em;}
-.data a {color:#d3d3d3;}
-.data a:hover {color:#ffffff;}
 
 
 
@@ -156,5 +96,6 @@ body::before {
 
 /*    WIDGET - LIVE STREAMS    */
 
+.streams .widget {padding:0!important}
 iframe {height:100%;width:100%;}
 iframe #player {background-color:transparent}

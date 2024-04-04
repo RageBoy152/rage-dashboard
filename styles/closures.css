@@ -1,0 +1,25 @@
+/*    WIDGET - CLOSURES AND TFRs    */
+
+.bocaStats {
+    overflow-y: auto;
+    justify-content: flex-start!important;
+    padding:0!important;
+}
+#closures-container, #tfr-container {width:100%}
+.data .bigI {font-size:1.2em;}
+
+.bocaStats .row {justify-content: flex-start!important;gap:1em;}
+
+.data {
+    border:1px solid #fff;
+    padding:2em 3em;
+    gap:0.5em;
+}
+.status {padding:1em;text-align:center;border-bottom: 1px solid #fff;}
+.statusGreen {background-color:rgba(0, 256, 0, 0.1);}
+.statusRed {background-color:rgba(256, 0, 0, 0.1);}
+.statusUnkown {background-color:rgba(255, 255, 0,0.1);}
+
+.noData {text-align: center;margin-top:1em;}
+.data a {color:#d3d3d3;}
+.data a:hover {color:#ffffff;}

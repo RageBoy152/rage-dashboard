@@ -1,0 +1,40 @@
+/*    WIDGET - LAUNCHES    */
+
+.upcomingLaunches {
+    overflow-y: auto;
+    gap: 0!important;
+    padding: 0!important;
+    justify-content: flex-start!important;
+    align-items: flex-start!important;
+    font-size:0.8em;
+}
+
+
+.launchCard {
+    border:1px solid #fff;
+    padding:2em 3em;
+    width:100%;
+}
+
+
+.launchCard .row {justify-content:left;}
+
+.upcomingLaunches .err {width:100%;text-align:center;margin-block:auto;}
+
+
+.launchCard h1 {font-size:2em;border-bottom:1px solid #fff;padding-bottom:2%;margin-bottom:1%;}
+.launchCard h2 {font-size:1.7em;}
+.launchCard .bi-clock {font-size:1.4em;}
+.launchCard h3 {text-transform: capitalize;}
+
+.launchCard .space {margin-block:0.2em;}
+
+.launchCard .col {align-items: flex-start;}
+
+.launchCard .container {gap:2em;}
+
+.launchCard .stats {gap:0.8em;}
+.launchCard .stats .row {gap:10px;}
+.launchCard .stats .row p {font-size:1.1em;}
+
+.launchCard .timeHalf {font-size:0.9em;}

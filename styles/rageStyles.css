@@ -1,0 +1,61 @@
+.multiview-link, .upcominglaunches-speed-icons {position: absolute;margin-left:66%;margin-top:26%;}
+.multiview-link a, .upcominglaunches-speed-icons a {color: #b4b4b4;padding:15px;font-size:1.75em;transition: color 0.1s ease-in-out;cursor:pointer;}
+.multiview-link a:hover, .upcominglaunches-speed-icons a:hover {color: #ffffff;}
+
+
+
+
+hr {border: 1px solid #fff;width:100%;margin-block:1em;}
+
+h2 {text-transform: uppercase;}
+
+h1.big {font-size: 2em;}
+
+
+
+.main-row {height:45%;}
+.main-row.timezones-row {height:10%;}
+
+
+
+/*    WIDGET - DATE AND TIME    */
+
+.dateTime {width:60%!important;}
+.dateTime .big span {margin-inline:0.05em}
+.dateTime .big {padding-block:10%;margin-block:0.5em;border-block:1px solid #fff;text-align:center;font-variant-numeric: tabular-nums}
+
+
+
+
+/*    WIDGET - WEATHER    */
+
+.weather .suns i {font-size:3.25em}
+
+.weather hr {margin-block:0.5em;}
+
+.weather .suns, .weather .stats {gap: 4em;}
+
+.weather .current {padding-right:7em;align-items:flex-start;}
+
+
+.weather .forecast img {width:50px;}
+.weather .forecast {gap:2em;}
+.weather .forecast .time {font-size:1em;font-weight:800;}
+
+
+
+
+/*    WIDGET - UPCOMING LAUNCHES    */
+.upcomingLaunches {width: 110%!important;}
+
+
+
+
+/*    WIDGET - TIMEZONES    */
+
+.timezones {
+    flex-direction: row!important;
+    justify-content: space-around!important;
+}
+
+.timezones h1 {text-align:center;font-variant-numeric: tabular-nums}
