@@ -65,7 +65,7 @@ async function getWeatherData() {
     } 
 
 
-    fs.writeFile("data/weatherData.json", JSON.stringify(weather), (err) => err && console.error(err));
+    fs.writeFile("./data/weatherData.json", JSON.stringify(weather), (err) => err && console.error(err));
 }
 
 
@@ -89,7 +89,7 @@ async function getLaunchData() {
     launchesData = await rawLaunchesData.json()
 
 
-    fs.writeFile("data/launchData.json", JSON.stringify(launchesData), (err) => err && console.error(err));
+    fs.writeFile("./data/launchData.json", JSON.stringify(launchesData), (err) => err && console.error(err));
 }
 
 
@@ -120,8 +120,8 @@ async function getBocaStats() {
     console.log("updating closure.json and roadStatus.json")
     console.log(closuresData)
 
-    fs.writeFile("data/closures.json", JSON.stringify(closuresData), (err) => err && console.error(err));
-    fs.writeFile("data/roadStatus.json", JSON.stringify(roadStatus), (err) => err && console.error(err));
+    fs.writeFile("./data/closures.json", JSON.stringify(closuresData), (err) => err && console.error(err));
+    fs.writeFile("./data/roadStatus.json", JSON.stringify(roadStatus), (err) => err && console.error(err));
     // fs.writeFile("data/tfrData.json", JSON.stringify(closuresData), (err) => err && console.error(err));
 }
 
