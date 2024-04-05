@@ -10,7 +10,6 @@ const baseLaunchAPIURL = 'https://ll.thespacedevs.com/2.2.0/'
 const baseClosuresTFRAPIURL = 'https://starbase.nerdpg.live/api/json/'
 
 
-launchesRate = 15
 
 
 const app = express()
@@ -36,13 +35,6 @@ app.use(cors(corsOptions))
 
 //    WEATHER
 app.get('/weather',async(req,res)=>{
-    data = require('./data/weatherData.json')
-
-    res.json(data)
-})
-
-
-async function getWeatherData() {
     rawForecastData = await fetch(`${baseWeatherAPIURL}forecast.json?key=${process.env.WEATHER_API_KEY}&q=${process.env.LOCATION}`)
     forecastData = await rawForecastData.json()
     
@@ -64,9 +56,8 @@ async function getWeatherData() {
         "isDay": forecastData.current.is_day
     } 
 
-
-    fs.writeFile("./data/weatherData.json", JSON.stringify(weather), (err) => err && console.error(err));
-}
+    res.json(weather)
+})
 
 
 
@@ -74,23 +65,12 @@ async function getWeatherData() {
 
 //    LAUNCHES
 app.get('/launches',async(req,res)=>{
-    data = require('./data/launchData.json')
-
-    if (data.details) {launchesRate = 21}
-    else {launchesRate = 15}
-
-
-    res.json(data.results)
-})
-
-
-async function getLaunchData() {
     rawLaunchesData = await fetch(`${baseLaunchAPIURL}launch/upcoming/?format=json&limit=5&mode=list&hide_recent_previous=true&ordering=desc`)
     launchesData = await rawLaunchesData.json()
 
 
-    fs.writeFile("./data/launchData.json", JSON.stringify(launchesData), (err) => err && console.error(err));
-}
+    res.json(launchesData.results)
+})
 
 
 
@@ -98,8 +78,12 @@ async function getLaunchData() {
 
 //    CLOSURES
 app.get('/closures',async(req,res)=>{
-    closuresData = require('./data/closures.json')
-    roadStatus = require('./data/roadStatus.json')
+    rawClosuresData = await fetch(`${baseClosuresTFRAPIURL}roadClosures`)
+    closuresData = await rawClosuresData.json()
+
+    rawStatusData = await fetch(`${baseClosuresTFRAPIURL}current`)
+    statusData = await rawStatusData.json()
+    roadStatus = statusData.testing.stateOfRoad
     tfrData = require('./data/tfrData.json')
 
     data = [closuresData,roadStatus,tfrData]
@@ -107,47 +91,6 @@ app.get('/closures',async(req,res)=>{
 })
 
 
-async function getBocaStats() {
-    rawClosuresData = await fetch(`${baseClosuresTFRAPIURL}roadClosures`)
-    closuresData = await rawClosuresData.json()
-
-    rawStatusData = await fetch(`${baseClosuresTFRAPIURL}current`)
-    statusData = await rawStatusData.json()
-    roadStatus = statusData.testing.stateOfRoad
-
-    fs.writeFile("./data/closures.json", JSON.stringify(closuresData), (err) => err && console.error(err));
-    fs.writeFile("./data/roadStatus.json", JSON.stringify(roadStatus), (err) => err && console.error(err));
-    // fs.writeFile("data/tfrData.json", JSON.stringify(closuresData), (err) => err && console.error(err));
-}
-
-
-
-
-
-tTotal = 0
-//  RUNS EVERY MIN, HANDLES MAIN LOOP FUNC
-setInterval(function(){
-    tTotal += 1
-
-    if (tTotal%2 == 0) {
-        // every 2 mins
-        getBocaStats()
-    }   else if (tTotal%15 == 0) {
-        // every 15 mins
-        getWeatherData()
-    }   else if (tTotal%60 == 0) {
-        // every hour
-    }   else if (tTotal%launchesRate == 0) {
-        // every whatever the rate for launches is - prevents rate limit blocks
-        getLaunchData()
-    }
-}, 60000);
-
-
-//  INIT DATA
-getBocaStats()
-getLaunchData()
-getWeatherData()
 
 
 
