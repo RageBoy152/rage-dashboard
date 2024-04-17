@@ -94,6 +94,18 @@ app.get('/closures',async(req,res)=>{
 
 
 
+//    STARBASE UPDATES
+app.get('/starbase-updates',async(req,res)=>{
+    rawUpdatesData = await fetch(`https://starbase-updates-backend.onrender.com/get-updates`)
+    updatesData = await rawUpdatesData.json()
+
+    res.json(updatesData)
+})
+
+
+
+
+
 app.listen(8114,()=>{
     console.log('Server listening at https://rage-dashboard.onrender.com/')
 })
