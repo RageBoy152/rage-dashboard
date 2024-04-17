@@ -37,14 +37,9 @@ async function refreshUpdates() {
     fetchData = await fetchUpdates()
     updateStatus = "err"
     
-
-    $('#starbase-updates')[0].innerHTML = "<div class='err'><h1>Loading...</h1></div>"
+    
     if (!fetchData[1]) {
         data = await fetchData[0].json()
-
-
-        if (data.length>0)
-            $('#starbase-updates')[0].innerHTML = ''
 
         for (let i=0;i<data.length;i++) {
 
