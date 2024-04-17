@@ -42,6 +42,8 @@ async function updateClosures() {
     updateStatus = "err"
     data = await fetchData[0].json()
 
+    console.log(data[0])
+
 
     //  only proceed with update if fetched data is different from stored data
     if (closureData != data[0] || roadStatus != data[1] || tfrData != data[2]) {

@@ -1,5 +1,5 @@
-// const baseAPIURL = 'http://localhost:8114/'
-const baseAPIURL = 'https://rage-dashboard.onrender.com/'
+const baseAPIURL = 'http://localhost:8114/'
+// const baseAPIURL = 'https://rage-dashboard.onrender.com/'
 
 // const midScrollSpeed = 40
 
