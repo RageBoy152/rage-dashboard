@@ -34,19 +34,9 @@
 
     <div class="container main">
         <div class="row main-row">
-            <section class="col widget flex dateTime">
-                <h1 id="date">30 / 03 / 2024</h1>
-                <h2 id="day-text">saturday</h2>
-        
-                <h1 class="big timezone" id="timezone_l">00 <span>:</span> 00 <span>:</span> 00</h1>
-        
-                <p id="local-utc-offset">UTC+1</p>
-            </section>
-
-
-            <section class="col widget flex weather">
-                <h1>Loading weather...</h1>
-            </section>
+            <div class="col widget upcomingLaunches" id="scrolling-list">
+                <div class="err"><h1>Loading...</h1></div>
+            </div>
 
 
             <section class="col widget bocaStats">
@@ -55,10 +45,20 @@
                 </div>
             </section>
 
+            
+            <section class="col widget flex weather">
+                <h1>Loading weather...</h1>
+            </section>
+            
 
-            <div class="col widget upcomingLaunches" id="scrolling-list">
-                <div class="err"><h1>Loading...</h1></div>
-            </div>
+            <section class="col widget flex dateTime">
+                <h1 id="date">30 / 03 / 2024</h1>
+                <h2 id="day-text">saturday</h2>
+        
+                <h1 class="big timezone" id="timezone_l">00 <span>:</span> 00 <span>:</span> 00</h1>
+        
+                <p id="local-utc-offset">UTC+1</p>
+            </section>
         </div>
 
 
