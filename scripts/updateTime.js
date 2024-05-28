@@ -17,7 +17,8 @@ timeMode = '24'
 function adjustHour(hour, offset) {
     hourAdjusted = hour+offset
     if (hourAdjusted<0) {hourAdjusted=24+hourAdjusted}
-    if (hourAdjusted==24) {hourAdjusted=0}
+    else if (hourAdjusted > 24) {hourAdjusted = hourAdjusted - 24}
+    else if (hourAdjusted==24) {hourAdjusted=0}
     return hourAdjusted.toString().padStart(2, '0')
 }
 
